@@ -44,6 +44,7 @@ public class BatchConfiguration {
 		return stepBuilderFactory.get(STEP_NAME)
 				.<ImportData, ExportData>chunk(AED_DATA_CHUNK_SIZE)
 				.reader(reader())
+				.processor(importDataItemProcessor())
 				.writer(null)
 				.build();
 	}
@@ -60,6 +61,11 @@ public class BatchConfiguration {
 				.names(IMPORT_DATA_PARAMETERS)
 				.fieldSetMapper(beanWrapperFieldSetMapper)
 				.build();
+	}
+	
+	@Bean
+	public ImportDataItemProcessor importDataItemProcessor() {
+		return new ImportDataItemProcessor();
 	}
 
 }
