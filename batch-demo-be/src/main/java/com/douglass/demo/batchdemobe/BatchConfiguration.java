@@ -13,6 +13,7 @@ import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 
@@ -20,6 +21,7 @@ import com.douglass.demo.batchdemobe.model.ExportData;
 import com.douglass.demo.batchdemobe.model.ImportData;
 
 @EnableBatchProcessing
+@SpringBootApplication
 public class BatchConfiguration {
 
 	private static final String JOB_NAME = "importDataJob";
@@ -64,7 +66,7 @@ public class BatchConfiguration {
 
 		return new FlatFileItemReaderBuilder<ImportData>()
 				.name("importDataReader")
-				.resource(new ClassPathResource("sample-data.csv"))
+				.resource(new ClassPathResource("./static/sample-data.csv"))
 				.delimited()
 				.names(IMPORT_DATA_PARAMETERS)
 				.fieldSetMapper(beanWrapperFieldSetMapper)
