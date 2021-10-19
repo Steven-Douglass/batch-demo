@@ -2,8 +2,17 @@ package com.douglass.demo.batchdemobe.model;
 
 import java.util.Date;
 
-public class ExportData {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+public class ExportData {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private char color;
 	private int number;
 	private Date date;
