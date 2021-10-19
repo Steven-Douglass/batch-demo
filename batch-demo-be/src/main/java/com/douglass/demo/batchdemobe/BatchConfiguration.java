@@ -1,10 +1,14 @@
 package com.douglass.demo.batchdemobe;
 
+import javax.persistence.EntityManagerFactory;
+
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.item.database.JpaItemWriter;
+import org.springframework.batch.item.database.builder.JpaItemWriterBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
@@ -25,11 +29,15 @@ public class BatchConfiguration {
 
 	private final JobBuilderFactory jobBuilderFactory;
 	private final StepBuilderFactory stepBuilderFactory;
+	private final EntityManagerFactory entityManagerFactory;
 
 	@Autowired
-	public BatchConfiguration(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory) {
+	public BatchConfiguration(JobBuilderFactory jobBuilderFactory, 
+			StepBuilderFactory stepBuilderFactory,
+			EntityManagerFactory entityManagerFactory) {
 		this.jobBuilderFactory = jobBuilderFactory;
 		this.stepBuilderFactory = stepBuilderFactory;
+		this.entityManagerFactory = entityManagerFactory;
 	}
 
 	@Bean
@@ -45,7 +53,7 @@ public class BatchConfiguration {
 				.<ImportData, ExportData>chunk(AED_DATA_CHUNK_SIZE)
 				.reader(reader())
 				.processor(importDataItemProcessor())
-				.writer(null)
+				.writer(jpaWriter(entityManagerFactory))
 				.build();
 	}
 	
@@ -66,6 +74,13 @@ public class BatchConfiguration {
 	@Bean
 	public ImportDataItemProcessor importDataItemProcessor() {
 		return new ImportDataItemProcessor();
+	}
+
+	@Bean
+	public JpaItemWriter<ExportData> jpaWriter(EntityManagerFactory entityManagerFactory) {
+		return new JpaItemWriterBuilder<ExportData>()
+				.entityManagerFactory(entityManagerFactory)
+				.build();
 	}
 
 }
