@@ -25,7 +25,7 @@ import com.douglass.demo.batchdemobe.model.ImportData;
 @SpringBootApplication
 public class BatchConfiguration {
 
-	private static final String JOB_NAME = "importDataJob";
+	public static final String JOB_NAME = "importDataJob";
 	private static final String STEP_NAME = "importDataStep";
 	private static final Integer DATA_CHUNK_SIZE = 100;
 	private static final String[] IMPORT_DATA_PARAMETERS = {"color", "number"};
@@ -44,7 +44,7 @@ public class BatchConfiguration {
 	}
 
 	@Bean
-	public Job batchJob() {
+	public Job importDataJob() {
 		return jobBuilderFactory.get(JOB_NAME)
 				.start(step())
 				.incrementer(new RunIdIncrementer())
