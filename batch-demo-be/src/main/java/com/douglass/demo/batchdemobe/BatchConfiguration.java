@@ -27,7 +27,7 @@ public class BatchConfiguration {
 
 	private static final String JOB_NAME = "importDataJob";
 	private static final String STEP_NAME = "importDataStep";
-	private static final Integer AED_DATA_CHUNK_SIZE = 100;
+	private static final Integer DATA_CHUNK_SIZE = 100;
 	private static final String[] IMPORT_DATA_PARAMETERS = {"color", "number"};
 
 	private final JobBuilderFactory jobBuilderFactory;
@@ -54,7 +54,7 @@ public class BatchConfiguration {
 	@Bean
 	public Step step() {
 		return stepBuilderFactory.get(STEP_NAME)
-				.<ImportData, ExportData>chunk(AED_DATA_CHUNK_SIZE)
+				.<ImportData, ExportData>chunk(DATA_CHUNK_SIZE)
 				.reader(reader())
 				.processor(importDataItemProcessor())
 				.writer(jpaWriter(entityManagerFactory))
