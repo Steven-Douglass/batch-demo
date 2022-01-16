@@ -58,6 +58,8 @@ public class BatchConfiguration {
 				.reader(reader())
 				.processor(importDataItemProcessor())
 				.writer(jpaWriter(entityManagerFactory))
+				.faultTolerant()
+				.skipPolicy(new CustomSkipPolicy())
 				.build();
 	}
 	
