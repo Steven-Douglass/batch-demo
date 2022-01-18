@@ -1,5 +1,7 @@
 package com.douglass.demo.batchdemobe.controller;
 
+import java.util.List;
+
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.douglass.demo.batchdemobe.BatchConfiguration;
+import com.douglass.demo.batchdemobe.dao.ExportDataRepository;
+import com.douglass.demo.batchdemobe.model.ExportData;
 
 @RestController
 @RequestMapping("/api")
@@ -25,13 +29,15 @@ public class BatchRestController {
 	private final JobLauncher jobLauncher;
 	private final ApplicationContext applicationContext;
 	private final JobExplorer jobExplorer;
+	private final ExportDataRepository exportDataRepository;
 
 	@Autowired
 	public BatchRestController(JobLauncher jobLauncher, ApplicationContext applicationContext,
-			JobExplorer jobExplorer) {
+			JobExplorer jobExplorer, ExportDataRepository exportDataRepository) {
 		this.jobLauncher = jobLauncher;
 		this.applicationContext = applicationContext;
 		this.jobExplorer = jobExplorer;
+		this.exportDataRepository = exportDataRepository;
 	}
 
 	@GetMapping("/runBatchJob")
@@ -42,6 +48,11 @@ public class BatchRestController {
 				.getNextJobParameters(importDataJob)
 				.toJobParameters();
 		return this.jobLauncher.run(importDataJob, jobParameters).getExitStatus();
+	}
+	
+	@GetMapping("/getExportData")
+	public List<ExportData> getExportData() {
+		return exportDataRepository.findAll();
 	}
 
 }
