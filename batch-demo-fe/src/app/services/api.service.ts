@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { ExportData } from '../table-view/table-view.component';
 import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 const EXPORT_DATA: ExportData[] = [
   { id: 1, color: 'R', date: new Date("2019-01-16"), number: 5204 },
@@ -17,7 +19,9 @@ const EXPORT_DATA: ExportData[] = [
   providedIn: 'root'
 })
 export class ApiService {
-  constructor() {
+  private runBatchJobUrl = 'localhost:8080/api/runBatchJob';
+  private getExportDataUrl = 'localhost:8080/api/getExportData';
+  constructor(private httpClient: HttpClient) {
 
   }
 
@@ -32,7 +36,11 @@ export class ApiService {
   }
 
   getApiData3(): Observable<ExportData[]> {
-    const data = of(EXPORT_DATA);
-    return data;
+    return of(EXPORT_DATA);
   }
+
+  getApiData4(): Observable<ExportData[]> {
+    return this.httpClient.get<ExportData[]>(this.getExportDataUrl);
+  }
+
 }
