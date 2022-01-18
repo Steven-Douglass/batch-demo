@@ -1,5 +1,5 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    !-- ID Column -->
+<table mat-table [dataSource]="data" class="mat-elevation-z8">
+    <!-- ID Column -->
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let exportData"> {{exportData.id}} </td>
@@ -11,13 +11,13 @@
         <td mat-cell *matCellDef="let exportData"> {{exportData.color}} </td>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- Date Column -->
     <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef> Date </th>
         <td mat-cell *matCellDef="let exportData"> {{exportData.date}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Number Column -->
     <ng-container matColumnDef="number">
         <th mat-header-cell *matHeaderCellDef> Number </th>
         <td mat-cell *matCellDef="let exportData"> {{exportData.number}} </td>
