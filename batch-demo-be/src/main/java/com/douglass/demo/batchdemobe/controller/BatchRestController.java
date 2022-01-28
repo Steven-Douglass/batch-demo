@@ -14,6 +14,7 @@ import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteExcep
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,7 @@ import com.douglass.demo.batchdemobe.dao.ExportDataRepository;
 import com.douglass.demo.batchdemobe.model.ExportData;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class BatchRestController {
 
