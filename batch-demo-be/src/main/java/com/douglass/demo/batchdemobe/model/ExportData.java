@@ -12,7 +12,7 @@ public class ExportData {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	private char color;
 	private int number;
 	private Date date;
@@ -50,5 +50,10 @@ public class ExportData {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	@Override
+	public String toString() {
+		return "ID: " + id + "\nColor: " + color + "\nNumber: " + number + "\nDate: " + date;
 	}
 }
