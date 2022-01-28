@@ -16,11 +16,12 @@ export interface ExportData {
 export class TableViewComponent implements OnInit {
   displayedColumns: string[] = ['id', 'color', 'date', 'number'];
   data: ExportData[] = [];
+  testData: ExportData[] = [];
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.apiService.getApiData3().subscribe((data) => this.data = data);
+    this.apiService.getApiData().subscribe((data) => this.data = data);
   }
 
 }
