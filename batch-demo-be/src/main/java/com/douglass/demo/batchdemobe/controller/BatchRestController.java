@@ -24,7 +24,7 @@ import com.douglass.demo.batchdemobe.dao.ExportDataRepository;
 import com.douglass.demo.batchdemobe.model.ExportData;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
 public class BatchRestController {
 
