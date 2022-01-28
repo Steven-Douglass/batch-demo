@@ -27,6 +27,10 @@ public class ExportData {
 		this.number = number;
 		this.date = date;
 	}
+	
+	public Integer getId() {
+		return id;
+	}
 
 	public char getColor() {
 		return color;
