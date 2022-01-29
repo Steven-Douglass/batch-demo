@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { TableViewComponent } from './table-view/table-view.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { TableViewComponent } from './table-view/table-view.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatPaginatorModule,
     MatTableModule,
     HttpClientModule
   ],
