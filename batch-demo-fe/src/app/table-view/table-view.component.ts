@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 
 export interface ExportData {
@@ -8,6 +10,17 @@ export interface ExportData {
   number: number;
 }
 
+const EXPORT_DATA: ExportData[] = [
+  { id: 1, color: 'R', date: new Date("2019-01-16"), number: 5204 },
+  { id: 2, color: 'R', date: new Date("2014-10-04"), number: 17224 },
+  { id: 3, color: 'B', date: new Date("2019-01-16"), number: 615274 },
+  { id: 4, color: 'B', date: new Date("2019-01-16"), number: 204154 },
+  { id: 5, color: 'G', date: new Date("2019-01-16"), number: 18204 },
+  { id: 6, color: 'G', date: new Date("2019-01-16"), number: 85124 },
+  { id: 7, color: 'Y', date: new Date("2019-01-16"), number: 156824 },
+  { id: 8, color: 'Y', date: new Date("2019-01-16"), number: 3275124 },
+];
+
 @Component({
   selector: 'app-table-view',
   templateUrl: './table-view.component.html',
@@ -15,13 +28,17 @@ export interface ExportData {
 })
 export class TableViewComponent implements OnInit {
   displayedColumns: string[] = ['id', 'color', 'date', 'number'];
-  data: ExportData[] = [];
-  testData: ExportData[] = [];
+  dataSource = new MatTableDataSource<ExportData>();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.apiService.getApiData().subscribe((data) => this.data = data);
+    this.apiService.getApiData().subscribe((data) => {
+      this.dataSource = new MatTableDataSource<ExportData>(data);
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
 }
