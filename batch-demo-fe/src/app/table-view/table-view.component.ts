@@ -49,4 +49,16 @@ export class TableViewComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  runBatchJob() {
+    this.apiService.runBatchJob().subscribe(() => {
+      this.retrieveTableData();
+    });
+  }
+
+  retrieveTableData() {
+    this.apiService.getApiData().subscribe((data) => {
+      this.dataSource.data = data;
+    });
+  }
+
 }

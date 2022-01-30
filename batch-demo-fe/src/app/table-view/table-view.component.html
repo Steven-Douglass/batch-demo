@@ -3,7 +3,7 @@
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
     </mat-form-field>
-    <button mat-raised-button color="primary">Add more data</button>
+    <button (click)="runBatchJob()" mat-raised-button color="primary">Add more data</button>
 </div>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
