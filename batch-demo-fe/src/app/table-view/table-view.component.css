@@ -1,3 +1,18 @@
 table {
     width: 100%;
 }
+
+#table-header {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+mat-form-field {
+    width: 40%;
+}
+
+mat-paginator {
+    margin-top: 15px;
+}
