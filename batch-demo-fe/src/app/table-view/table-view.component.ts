@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../services/api.service';
+import { MatSort } from '@angular/material/sort';
 
 export interface ExportData {
   id: number;
@@ -31,6 +32,7 @@ export class TableViewComponent implements OnInit {
   dataSource = new MatTableDataSource<ExportData>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private apiService: ApiService) { }
 
@@ -38,6 +40,7 @@ export class TableViewComponent implements OnInit {
     this.apiService.getApiData().subscribe((data) => {
       this.dataSource = new MatTableDataSource<ExportData>(data);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
