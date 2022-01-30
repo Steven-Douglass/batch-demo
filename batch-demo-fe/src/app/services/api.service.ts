@@ -34,4 +34,8 @@ export class ApiService {
     return of(EXPORT_DATA);
   }
 
+  runBatchJob() {
+    return this.httpClient.get(this.runBatchJobUrl);
+  }
+
 }
