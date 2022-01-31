@@ -9,6 +9,16 @@ table {
     justify-content: space-between;
 }
 
+h1 {
+    text-align: center;
+}
+
+mat-card {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 mat-form-field {
     width: 40%;
 }
