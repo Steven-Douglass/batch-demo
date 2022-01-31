@@ -3,6 +3,7 @@
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
     </mat-form-field>
+    <button (click)="deleteAll()" mat-raised-button color="warn">Delete all data</button>
     <button (click)="runBatchJob()" mat-raised-button color="primary">Add more data</button>
 </div>
 

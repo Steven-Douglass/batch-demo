@@ -17,6 +17,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.douglass.demo.batchdemobe.BatchConfiguration;
@@ -55,6 +56,13 @@ public class BatchRestController {
 	@GetMapping("/getExportData")
 	public List<ExportData> getExportData() {
 		return exportDataRepository.findAll();
+	}
+	
+	@GetMapping("/deleteAll")
+	@ResponseBody
+	public String deleteAll() {
+		exportDataRepository.deleteAll();
+		return "Success";
 	}
 
 }

@@ -61,4 +61,10 @@ export class TableViewComponent implements OnInit {
     });
   }
 
+  deleteAll() {
+    this.apiService.deleteAll().subscribe(() => {
+      this.dataSource.data = [];
+    });
+  }
+
 }
