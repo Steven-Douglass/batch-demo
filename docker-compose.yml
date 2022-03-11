@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  angular-fe:
+    container_name: frontend
+    build: ./batch-demo-fe/
+    # links:
+    #   - postgres
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./batch-demo-fe/:/usr/src/app
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: batch_user
+      POSTGRES_PASSWORD: Spr1ngB@tchDem0us3r
+      POSTGRES_DB: spring_batch_item_generator
+    ports:
+      - "5432:5432"
+
+  spring-be:
+    container_name: backend
+    build: ./batch-demo-be/
+    # links:
+    #   - postgres
+    ports:
+      - "8080:8080"
