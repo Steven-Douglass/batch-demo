@@ -1,25 +1,40 @@
 # Spring Batch Item Generator
 This project consists of three parts
 - A Spring Boot backend which includes Spring Batch data processing and an API
-- An Angular front end to call the backend API methods and display our data
-- **A local instance of PostgreSQL which is not included in this project**
-  - Attempting to clone and run this repository will fail unless a PostgreSQL or other SQL database instance is configured. The batch-demo-be application.properties file must be updated to connect to a PostgreSQL or other SQL database instance. When the application starts the batch job runs once and all required database tables will be created automatically.
+- An Angular front end to call the Spring Boot backend API methods and display our data
+- A PostgreSQL database to store the application data
 
-## Spring Boot Backend
-Contents exist within the batch-demo-be folder
-The Spring Boot Backend can be deployed locally with the following commands
+## How to run this project
+This project requires Docker and Docker Compose to run. Optionally I have found that installing Maven is more reliable than using the mvnw file that comes with Spring Boot Initializr projects.
+
+ The first step is to build the Spring Boot Backend.
 
 ```
 cd /batch-demo-be
 
 ./mvnw clean install -DskipTests
-
-cd target
-
-java -jar batch-demo-be-0.0.1-SNAPSHOT.jar
+or (If Maven is installed)
+mvn clean install -DskipTests
 ```
 
-The batch job runs when the application starts and can be triggered to run again via an API Endpoint.
+The next step is to run the docker-compose.yml file. This will create individual containers for the Spring Boot backend, the Angular frontend, and the PostgreSQL database. 
+
+```
+docker-compose up --build
+```
+
+The first time the application is built can take several minutes while dependencies are downloaded. Subsequent launches of the application can be ran with the --build option omitted for a faster launch.
+
+```
+docker-compose up
+```
+
+After the containers start open your browser on http://localhost:4200/ to access the application.
+
+## Spring Boot Backend Info
+Contents exist within the batch-demo-be folder
+
+This Spring Boot project contains a Sprint Batch job that writes data to the PostgreSQL database. The batch job runs when the application starts and can be triggered to run again via an API Endpoint.
 
 ### API Endpoints
 - localhost:8080/api/runBatchJob
@@ -29,19 +44,8 @@ The batch job runs when the application starts and can be triggered to run again
 - localhost:8080/api/deleteAll
   - Delete the contents of the export_data table
 
-## Angular Frontend
+## Angular Frontend Info
 Contents exist within the batch-demo-fe folder
-
-The Angular Frontend depends upon the [Angular CLI](https://angular.io/guide/setup-local) which can be installed with the following command
-```
-npm install -g @angular/cli
-```
-
-The Angular Frontend can be deployed locally with the following commands
-```
-npm install
-ng serve
-```
 
 The Angular Frontend consists of an Angular Material UI Table with sorting, filtering, and pagination. The buttons 'Add more data' and 'Delete all data' hit the Spring Boot Backend APIs and refresh the table automatically.
 
