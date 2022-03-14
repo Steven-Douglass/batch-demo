@@ -5,7 +5,7 @@ This project consists of three parts
 - A PostgreSQL database to store the application data
 
 ## How to run this project
-This project requires Docker and Docker Compose to run. Optionally I have found that installing Maven is more reliable than using the mvnw file that comes with Spring Boot Initializr projects.
+This project requires Docker and Docker Compose to run. 
 
  The first step is to build the Spring Boot Backend.
 
