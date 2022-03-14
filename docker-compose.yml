@@ -6,8 +6,6 @@ services:
     build: ./batch-demo-fe/
     ports:
       - "4200:4200"
-    volumes:
-      - ./batch-demo-fe/:/usr/src/app
 
   postgres:
     container_name: postgres
@@ -22,5 +20,8 @@ services:
   spring-be:
     container_name: backend
     build: ./batch-demo-be/
+    depends_on:
+      - "postgres"
     ports:
       - "8080:8080"
+
