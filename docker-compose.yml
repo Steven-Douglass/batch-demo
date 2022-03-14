@@ -20,6 +20,8 @@ services:
   spring-be:
     container_name: backend
     build: ./batch-demo-be/
+    depends_on:
+      - "postgres"
     ports:
       - "8080:8080"
 
