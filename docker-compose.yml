@@ -6,8 +6,6 @@ services:
     build: ./batch-demo-fe/
     ports:
       - "4200:4200"
-    volumes:
-      - ./batch-demo-fe/:/usr/src/app
 
   postgres:
     container_name: postgres
@@ -24,3 +22,4 @@ services:
     build: ./batch-demo-be/
     ports:
       - "8080:8080"
+
