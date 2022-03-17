@@ -1,5 +1,5 @@
-FROM node:16.14.0
+FROM node:16-alpine3.14 AS builder
 WORKDIR /usr/src/app
 COPY ./ ./
-RUN npm install 
+RUN npm install
 CMD npm start
