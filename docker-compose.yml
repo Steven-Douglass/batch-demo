@@ -4,6 +4,7 @@ services:
   angular-fe:
     container_name: frontend
     build: ./batch-demo-fe/
+    restart: always
     ports:
       - "4200:4200"
 
