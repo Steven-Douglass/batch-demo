@@ -9,7 +9,8 @@ services:
 
   postgres:
     container_name: postgres
-    image: postgres
+    image: postgres:14.2-alpine
+    restart: always
     environment:
       POSTGRES_USER: batch_user
       POSTGRES_PASSWORD: Spr1ngB@tchDem0us3r
