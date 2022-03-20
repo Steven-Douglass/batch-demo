@@ -6,7 +6,7 @@ services:
     build: ./batch-demo-fe/
     restart: always
     ports:
-      - "4200:4200"
+      - "4200:80"
 
   postgres:
     container_name: postgres
