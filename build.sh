@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cd batch-demo-be;
-./mvnw clean install -DskipTests;
+./mvnw clean install;
 cd ..;
 #sudo apt update;
 #sudo apt install -y docker.io;
