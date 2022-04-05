@@ -1,20 +1,18 @@
 # Spring Batch Item Generator
-This project consists of three parts
-- A Spring Boot backend which includes Spring Batch data processing and an API
-- An Angular front end to call the Spring Boot backend API methods and display our data
-- A PostgreSQL database to store the application data
+This project consists of three parts:
+- A Spring Boot backend which includes Spring Batch data processing and a web API
+- An Angular front end to call the Spring Boot backend API methods and display data
+- A PostgreSQL database to store application data
 
 ## How to run this project
-This project requires Docker and Docker Compose to run. 
+This project requires Docker and Docker Compose to run. In the project root directory run the build.sh script to launch the application. Alternatively, the below manual steps can be followed.
 
  The first step is to build the Spring Boot Backend.
 
 ```
 cd /batch-demo-be
 
-./mvnw clean install -DskipTests
-or (If Maven is installed)
-mvn clean install -DskipTests
+./mvnw clean install
 ```
 
 The next step is to run the docker-compose.yml file. This will create individual containers for the Spring Boot backend, the Angular frontend, and the PostgreSQL database. 
@@ -29,7 +27,9 @@ The first time the application is built can take several minutes while dependenc
 docker-compose up
 ```
 
-After the containers start open your browser on http://localhost:4200/ to access the application.
+After the containers start navigate your browser to http://localhost:4200/ to access the application.
+
+# Project Details
 
 ## Spring Boot Backend Info
 Contents exist within the batch-demo-be folder
@@ -38,7 +38,7 @@ This Spring Boot project contains a Sprint Batch job that writes data to the Pos
 
 ### API Endpoints
 - localhost:8080/api/runBatchJob
-  - Trigger the batch job to run
+  - Trigger the batch job to run which adds 5,000 rows to the export_data table
 - localhost:8080/api/getExportData
   - Return the contents of the export_data table in JSON format
 - localhost:8080/api/deleteAll
