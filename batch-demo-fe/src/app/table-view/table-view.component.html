@@ -23,13 +23,13 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
         <td mat-cell *matCellDef="let exportData"> 
             <div *ngIf="exportData.color == 'R'" [ngStyle]="{color: 'red'}">
-                {{exportData.color}}
+                Red
             </div>
             <div *ngIf="exportData.color == 'G'" [ngStyle]="{color: 'green'}">
-                {{exportData.color}}
+                Green
             </div>
             <div *ngIf="exportData.color == 'B'" [ngStyle]="{color: 'blue'}">
-                {{exportData.color}}
+                Blue
             </div>
          </td>
     </ng-container>
