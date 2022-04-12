@@ -2,6 +2,10 @@ table {
     width: 100%;
 }
 
+.mat-column-id, .mat-column-color, .mat-column-date, .mat-column-number {
+    width: 25%;
+}
+
 #table-header {
     align-items: center;
     display: flex;
