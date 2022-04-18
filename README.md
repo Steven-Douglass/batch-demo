@@ -23,13 +23,13 @@ cd /batch-demo-be
 The next step is to run the docker-compose.yml file. This will create individual containers for the Spring Boot backend, the Angular frontend, and the PostgreSQL database. 
 
 ```
-docker-compose up --build
-```
-
-The first time the application is built can take several minutes while dependencies are downloaded. Subsequent launches of the application can be ran with the --build option omitted for a faster launch.
-
-```
 docker-compose up
+```
+
+The first time the application is built can take several minutes while dependencies are downloaded. Subsequent launches of the application will be noticably faster. If changes to the source code are made the images will need to be rebuilt. This is achieved by adding the --build option.
+
+```
+docker-compose up --build
 ```
 
 After the containers start navigate your browser to http://localhost:4200/ to access the application.
