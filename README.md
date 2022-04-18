@@ -5,9 +5,14 @@ This project consists of three parts:
 - A PostgreSQL database to store application data
 
 ## How to run this project
-This project requires Docker and Docker Compose to run. In the project root directory run the build.sh script to launch the application. Alternatively, the below manual steps can be followed.
+This project requires Docker and Docker Compose to run. In the project root directory run the build.sh script to launch the application.
+```
+./build.sh
+```
 
- The first step is to build the Spring Boot Backend.
+Alternatively, the below manual steps can be followed.
+
+ The first step is to build the Spring Boot Backend. From the project root folder run the commands:
 
 ```
 cd /batch-demo-be
@@ -28,6 +33,23 @@ docker-compose up
 ```
 
 After the containers start navigate your browser to http://localhost:4200/ to access the application.
+
+## How to run this project for development
+From the project root folder run the commands:
+```
+docker-compose -f docker-compose.dev.yml up -d
+
+cd batch-demo-be
+
+./mvnw spring-boot:run
+```
+With this configuration live reloading is enabled on the Angular front end with Docker Volumes, and live reloading is enabled on the Spring Boot back end with Spring DevTools.
+
+To bring down the development environment first shut down the running Spring Boot backend. This command can then be run in the project root folder to stop the docker containers:
+
+```
+docker-compose down
+```
 
 # Project Details
 
