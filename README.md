@@ -20,7 +20,7 @@ cd /batch-demo-be
 ./mvnw clean install
 ```
 
-The next step is to run the docker-compose.yml file. This will create individual containers for the Spring Boot backend, the Angular frontend, and the PostgreSQL database. 
+The next step is to run the docker-compose.yml file from the project root folder. This will create individual containers for the Spring Boot backend, the Angular frontend, and the PostgreSQL database. 
 
 ```
 docker-compose up
@@ -35,6 +35,8 @@ docker-compose up --build
 After the containers start navigate your browser to http://localhost:4200/ to access the application.
 
 ## How to run this project for development
+The development configuration enables live reloading on the Angular front end with Docker Volumes, and enables live reloading on the Spring Boot back end with Spring DevTools.
+
 From the project root folder run the commands:
 ```
 docker-compose -f docker-compose.dev.yml up -d
@@ -43,8 +45,6 @@ cd batch-demo-be
 
 ./mvnw spring-boot:run
 ```
-With this configuration live reloading is enabled on the Angular front end with Docker Volumes, and live reloading is enabled on the Spring Boot back end with Spring DevTools.
-
 To bring down the development environment first shut down the running Spring Boot backend. This command can then be run in the project root folder to stop the docker containers:
 
 ```
